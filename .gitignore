@@ -1,8 +1,19 @@
+# Bytecode & caches
 __pycache__/
-.env
-*.pyc
-*.log
 scraper/__pycache__/
-.idea/
-.vscode/
+*.py[cod]
+
+# Environment
+.env
 .env.*
+
+# IDEs & editors
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# Playwright cache (if used)
+playwright-report/
+test-results/
