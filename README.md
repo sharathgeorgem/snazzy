@@ -1,68 +1,59 @@
-# 🚆 Railway Booking Assistant (OpenAI Agent)
+# 🛤️ Railway Booking Assistant (OpenAI Agents)
 
-This project is a smart natural language interface for checking train availability in India. It uses the OpenAI Agents SDK to extract travel parameters from plain English queries and returns structured JSON output.
+This project allows users to query train availability using natural language. The assistant extracts travel details, optionally performs web search, and returns structured JSON.
 
 ---
 
 ## 🧠 Features
 
-- Understands queries like:  
-  `"Find sleeper trains from Chennai to Bangalore tomorrow"`
-- Extracts: `source`, `destination`, `date`, `class`
-- Uses **Playwright** to scrape real-time train availability (via Goibibo)
-- Validated output with Pydantic models
-- Fully testable with `pytest`
+- Parses natural language queries like:
+  - `"Find trains from Delhi to Mumbai on Friday"`
+  - `"Sleeper class trains between Chennai and Bangalore"`
+- Extracts travel parameters: `source`, `destination`, `date`, and `class`
+- Uses OpenAI Agents (via `WebSearchTool`) or local stub logic
+- Understands class names like `"first ac"`, `"chair car"`, and maps them to:
+  - `"1A"`, `"2A"`, `"3A"`, `"SL"`, `"CC"`, `"2S"`
 
 ---
 
-## 🚀 How to Use
+## 📁 Project Structure
 
-### 🔧 Setup
-
-1. Clone the repo:
-   ```bash
-   git clone https://github.com/sharathgeorgem/snazzy.git
-   cd snazzy
-   ```
-
-2. Create a `.env` file:
-   ```
-   OPENAI_API_KEY=sk-XXXXXXXXXXXXXXXXXXX
-   ```
-
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. Install Playwright browser dependencies:
-   ```bash
-   playwright install
-   ```
-
-5. Run the assistant:
-   ```bash
-   python railway_agent_openai.py
-   ```
+| File                                     | Description                                      |
+|------------------------------------------|--------------------------------------------------|
+| `railway_agent_openai.py`                | Agent using real-time web search                 |
+| `railway_agent_openai_without_websearch.py` | Agent using stubbed/fallback data            |
+| `agent_core.py`                          | Core logic to extract and normalize input        |
+| `test_railway_agent.py`                  | ✅ Pytest suite to validate all major flows      |
 
 ---
 
-## 🧪 Run Tests
+## ▶️ Setup
 
 ```bash
-pytest test_railway_agent.py -v
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+# Set OpenAI key
+echo "OPENAI_API_KEY=sk-..." > .env
+
+# For real-time agent
+python railway_agent_openai.py
+
+# For stub/offline fallback
+python railway_agent_openai_without_websearch.py
 ```
 
-All tests must pass for the agent to be considered production-ready.
+## TESTING
 
----
+```bash
+# Run all tests
+pytest test_railway_agent.py -v
 
-## 🛤 Future Plans
+# Run a specific test
+pytest test_railway_agent.py::test_class_extraction
 
-- ⏳ Add IRCTC fallback - Possibly when life in Jail seems not too bad.
-- ⏳ Add voice/WhatsApp interface - Cuz Baby got back!
+# Run manually (fallback)
+python test_railway_agent.py
+```
 
----
-
-Made with 💙 by [Sharath George M](https://github.com/sharathgeorgem)  
-Powered by OpenAI's Agents SDK + Playwright 🚀

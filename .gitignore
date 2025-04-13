@@ -1,19 +1,17 @@
-# Bytecode & caches
+# Bytecode and cache
 __pycache__/
-scraper/__pycache__/
 *.py[cod]
 
-# Environment
+# Virtual environment
+venv/
 .env
-.env.*
 
-# IDEs & editors
+# Editor settings
 .vscode/
 .idea/
 
-# OS
+# OS files
 .DS_Store
 
-# Playwright cache (if used)
-playwright-report/
-test-results/
+# Python packaging
+*.egg-info/
