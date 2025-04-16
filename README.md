@@ -7,8 +7,9 @@ This project allows users to query train availability using natural language. Th
 ## 🧠 Features
 
 - Parses natural language queries like:
-  - `"Find trains from Delhi to Mumbai on Friday"`
+  - `"Any trains from Delhi to Mumbai on Friday"`
   - `"Sleeper class trains between Chennai and Bangalore"`
+  - `"Any flights from Bangalore to Delhi tomorrow"`
 - Extracts travel parameters: `source`, `destination`, `date`, and `class`
 - Uses OpenAI Agents (via `WebSearchTool`) or local stub logic
 - Understands class names like `"first ac"`, `"chair car"`, and maps them to:
@@ -20,10 +21,10 @@ This project allows users to query train availability using natural language. Th
 
 | File                                     | Description                                      |
 |------------------------------------------|--------------------------------------------------|
-| `railway_agent_openai.py`                | Agent using real-time web search                 |
+| `travel_agent_openai.py`                | Agent using real-time web search                 |
 | `railway_agent_openai_without_websearch.py` | Agent using stubbed/fallback data            |
 | `agent_core.py`                          | Core logic to extract and normalize input        |
-| `test_railway_agent.py`                  | ✅ Pytest suite to validate all major flows      |
+| `test_travel_agent.py`                  | ✅ Pytest suite to validate all major flows      |
 
 ---
 
@@ -38,7 +39,7 @@ pip install -r requirements.txt
 echo "OPENAI_API_KEY=sk-..." > .env
 
 # For real-time agent
-python railway_agent_openai.py
+python travel_agent_openai.py
 
 # For stub/offline fallback
 python railway_agent_openai_without_websearch.py
@@ -80,6 +81,15 @@ Assumption: There will be lack of consistency and requires much more prompt tuni
 
 ![When asked if I should just the LLM instead of my glorious reg ex parser](image.png)
 
+![Train results](image-3.png)
+
+![Flight results](image-4.png)
+
 ![Test results](image-1.png)
 
-![Test results - some times- due to inconsistenct model output](image-2.png)
+![Test results - some times- due to inconsistent model output](image-2.png)
+
+
+## BONUS
+
+Since you've read all the way to the bottom, you can look for flights too :D
