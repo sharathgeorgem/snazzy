@@ -4,10 +4,10 @@ import asyncio
 from typing import Dict, Any
 
 
-from railway_agent_openai import railway_agent
+from travel_agent_openai import railway_agent
 
 try:
-    from railway_agent_openai import railway_agent  # Default to OpenAI implementation
+    from travel_agent_openai import railway_agent  # Default to OpenAI implementation
 except ImportError:
     # This is just a placeholder that will fail tests if no implementation is found
     async def railway_agent(query: str) -> Dict[str, Any]:

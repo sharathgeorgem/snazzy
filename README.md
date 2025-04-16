@@ -48,13 +48,13 @@ python railway_agent_openai_without_websearch.py
 
 ```bash
 # Run all tests
-pytest test_railway_agent.py -v
+pytest test_travel_agent.py -v
 
 # Run a specific test
-pytest test_railway_agent.py::test_class_extraction
+pytest test_travel_agent.py::test_class_extraction
 
 # Run manually (fallback)
-python test_railway_agent.py
+python test_travel_agent.py
 ```
 
 ## Learnings
@@ -81,3 +81,5 @@ Assumption: There will be lack of consistency and requires much more prompt tuni
 ![When asked if I should just the LLM instead of my glorious reg ex parser](image.png)
 
 ![Test results](image-1.png)
+
+![Test results - some times- due to inconsistenct model output](image-2.png)
